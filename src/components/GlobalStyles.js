@@ -22,6 +22,13 @@ body{
     background-size: cover;
 }
 
+h1,h2,h3,h4{
+  font-family:"Antonio"
+}
+
+p,a,button{
+  font-family:"Spartan"
+}
 `;
 
 export default GlobalStyles;

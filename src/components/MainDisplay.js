@@ -3,8 +3,10 @@ import styled from "styled-components";
 import planet from "../assets/planet-earth.svg";
 import PlanetParametersDetails from "./PlanetParametersDetails";
 import data from "../data.json";
+import Buttons from "./Buttons";
 
 export default function MainDisplay() {
+  console.log(data[2].images.planet === "../assets/planet-earth.svg");
   return (
     <Center>
       <ImageBox>
@@ -14,10 +16,11 @@ export default function MainDisplay() {
         <NameOfPlanet>{data[2].name}</NameOfPlanet>
         <PlanetDescription>{data[2].overview.content}</PlanetDescription>
 
-        <span style={{ color: "#fff" }}>
+        <Source style={{ color: "#fff" }}>
           Source :{" "}
           <SourceLink href={data[2].overview.source}>Wikipedia</SourceLink>
-        </span>
+        </Source>
+        <Buttons />
       </PlanetDescriptionBox>
       <PlanetParameters>
         <PlanetParametersDetails />
@@ -26,11 +29,17 @@ export default function MainDisplay() {
   );
 }
 
+const Source = styled.p`
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  opacity: 0.3;
+`;
+
 const SourceLink = styled.a`
-font-size:1.4rem;
-color:#fff;
-opacity:0.5
-font-weight:400;
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 700;
 `;
 
 const PlanetDescriptionBox = styled.div`
@@ -44,10 +53,9 @@ const PlanetDescriptionBox = styled.div`
 `;
 
 const PlanetDescription = styled.p`
-  font-size: 1.4rem;
-  font-weight: 400;
+  font-size: 1.2rem;
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.7;
   line-height: 1.5;
 `;
 
@@ -65,7 +73,7 @@ const ImageBox = styled.div`
 `;
 
 const Center = styled.div`
-  margin: 10rem 15rem 0;
+  margin: 4rem 15rem 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-item: flex-end;

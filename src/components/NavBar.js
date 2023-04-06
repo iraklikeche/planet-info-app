@@ -49,4 +49,5 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 2rem 5rem;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
 `;
