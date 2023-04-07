@@ -1,12 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import data from "../data.json";
+import planet from "../assets/planet-earth.svg";
+import internal from "../assets/planet-earth-internal.svg";
+import geology from "../assets/geology-earth.png";
 
-export default function Buttons() {
-  const Foo = ({ btn, value }) => (
+export default function Buttons(props) {
+  function handleClick(value) {
+    const imgArr = [
+      planet,
+      internal,
+      geology,
+      // data[2].images.planet,
+      // data[2].images.internal,
+      // data[2].images.geology,
+    ];
+
+    props.onButtonClick(imgArr[value - 1]);
+    // console.log(value);
+    // console.log(imgArr[value - 1]);
+  }
+  const Foo = ({ btn, index }) => (
     <ButtonBox>
-      <StyledBtn>
-        <span>01</span> {btn}
+      <StyledBtn onClick={() => handleClick(index + 1)}>
+        <Index>0{index + 1}</Index>
+        {btn}
       </StyledBtn>
       ;
     </ButtonBox>
@@ -15,11 +33,18 @@ export default function Buttons() {
     <div>
       {["Overview", "Structure", "Geology"].map((btn, index) => {
         const key = btn.toLowerCase();
-        return <Foo key={index} btn={btn} value={data[2][key]} />;
+        return <Foo key={index} btn={btn} index={index} value={data[2][key]} />;
       })}
     </div>
   );
 }
+
+const Index = styled.span`
+  color: #fff;
+  opacity: 0.5;
+  font-weight: 700;
+  font-family: Spartan;
+`;
 
 const ButtonBox = styled.div`
   display: flex;

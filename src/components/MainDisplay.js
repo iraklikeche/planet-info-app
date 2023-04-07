@@ -1,16 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import planet from "../assets/planet-earth.svg";
 import PlanetParametersDetails from "./PlanetParametersDetails";
 import data from "../data.json";
 import Buttons from "./Buttons";
+import geology from "../assets/geology-earth.png";
 
 export default function MainDisplay() {
-  console.log(data[2].images.planet === "../assets/planet-earth.svg");
+  const [planetImage, setPlanetImage] = useState(planet);
+  const [showGeology, setShowGeology] = useState(false);
+  function handleButtonClick(src) {
+    setPlanetImage(src);
+    setShowGeology(src === geology);
+  }
+
+  // function getPlanetImage(name) {
+  //   switch (name) {
+  //     case "Mercury":
+  //       return "";
+  //     case "Venus":
+  //       return "";
+  //     case "Earth":
+  //       return planet;
+  //     case "Mars":
+  //       return "";
+  //     case "Jupiter":
+  //       return "";
+  //     case "Saturn":
+  //       return "";
+  //     case "Uranus":
+  //       return "";
+  //     case "Neptune":
+  //       return "";
+  //     default:
+  //       return "";
+  //   }
+  // }
+
   return (
     <Center>
       <ImageBox>
-        <PlanetImage src={planet} />
+        <PlanetImage src={planetImage === geology ? planet : planetImage} />
+        {showGeology && <Geology src={geology} />}
       </ImageBox>
       <PlanetDescriptionBox>
         <NameOfPlanet>{data[2].name}</NameOfPlanet>
@@ -20,7 +51,7 @@ export default function MainDisplay() {
           Source :{" "}
           <SourceLink href={data[2].overview.source}>Wikipedia</SourceLink>
         </Source>
-        <Buttons />
+        <Buttons onButtonClick={handleButtonClick} />
       </PlanetDescriptionBox>
       <PlanetParameters>
         <PlanetParametersDetails />
@@ -28,6 +59,13 @@ export default function MainDisplay() {
     </Center>
   );
 }
+
+const Geology = styled.img`
+  width: 20%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(50%);
+`;
 
 const Source = styled.p`
   color: #fff;
@@ -70,6 +108,7 @@ const ImageBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 const Center = styled.div`
