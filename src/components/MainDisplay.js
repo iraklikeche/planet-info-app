@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import planet from "../assets/planet-earth.svg";
 import PlanetParametersDetails from "./PlanetParametersDetails";
-import data from "../data.json";
 import Buttons from "./Buttons";
 import geology from "../assets/geology-earth.png";
 
@@ -13,14 +12,13 @@ export default function MainDisplay({ currentPlanet }) {
     currentPlanet.overview.content
   );
 
-  console.log(planetImage);
-
   const [source, setSource] = useState(currentPlanet.overview.source);
   function handleButtonClick(src, content, source) {
     setPlanetImage(src);
     setShowGeology(src === geology);
     setDescription(content);
     setSource(source);
+    console.log(src);
   }
 
   if (!currentPlanet) {
@@ -37,7 +35,7 @@ export default function MainDisplay({ currentPlanet }) {
         <NameOfPlanet>{currentPlanet.name}</NameOfPlanet>
         <PlanetDescription>{description}</PlanetDescription>
 
-        <Source style={{ color: "#fff" }}>
+        <Source>
           Source : <SourceLink href={source}>Wikipedia</SourceLink>
         </Source>
         <Buttons
@@ -46,7 +44,7 @@ export default function MainDisplay({ currentPlanet }) {
         />
       </PlanetDescriptionBox>
       <PlanetParameters>
-        <PlanetParametersDetails />
+        <PlanetParametersDetails currentPlanet={currentPlanet} />
       </PlanetParameters>
     </Center>
   );

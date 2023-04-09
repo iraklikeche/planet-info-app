@@ -1,23 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import data from "../data.json";
 import DetailedParameterItem from "./DetailedParameterItem";
 
-export default function PlanetParametersDetails() {
+export default function PlanetParametersDetails({ currentPlanet }) {
+  const parameters = [
+    { title: "Rotation", key: "rotation" },
+    { title: "Revolution", key: "revolution" },
+    { title: "Radius", key: "radius" },
+    { title: "Temperature", key: "temperature" },
+  ];
+
+  if (!currentPlanet) {
+    return null;
+  }
+
   return (
     <PlanetParameterDetailsBox>
-      {["Rotation", "Revolution", "Radius", "Temperature"].map(
-        (title, index) => {
-          const key = title.toLowerCase();
-          return (
-            <DetailedParameterItem
-              key={index}
-              title={title}
-              value={data[2][key]}
-            />
-          );
-        }
-      )}
+      {parameters.map(({ title, key }) => (
+        <DetailedParameterItem
+          key={title}
+          title={title}
+          value={`${currentPlanet[key]}`}
+        />
+      ))}
     </PlanetParameterDetailsBox>
   );
 }

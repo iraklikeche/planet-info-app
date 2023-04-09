@@ -7,8 +7,13 @@ import geology from "../assets/geology-earth.png";
 
 export default function Buttons({ onButtonClick, currentPlanet }) {
   function handleClick(value, content, source) {
-    const imgArr = [planet, internal, geology];
+    const imgArr = [
+      currentPlanet.images.planet,
+      currentPlanet.images.internal,
+      currentPlanet.images.geology,
+    ];
 
+    console.log(imgArr);
     onButtonClick(imgArr[value - 1], content, source);
   }
   const Foo = ({ btn, index, content, source }) => (
