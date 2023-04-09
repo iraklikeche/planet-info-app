@@ -3,6 +3,8 @@ import GlobalStyles from "./components/GlobalStyles";
 import { Helmet } from "react-helmet";
 import NavBar from "./components/NavBar";
 import MainDisplay from "./components/MainDisplay";
+import { useState } from "react";
+import data from "./data.json";
 
 const defaultTheme = {
   colors: {
@@ -22,6 +24,10 @@ const defaultTheme = {
 };
 
 function App() {
+  const [currentPlanet, setCurrentPlanet] = useState(data[0]);
+  const handlePlanetClick = (planet) => {
+    setCurrentPlanet(planet);
+  };
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
@@ -37,9 +43,9 @@ function App() {
             rel="stylesheet"
           />
         </Helmet>
-        <NavBar />
+        <NavBar onPlanetClick={handlePlanetClick} />
 
-        <MainDisplay />
+        <MainDisplay currentPlanet={currentPlanet} />
       </ThemeProvider>
     </>
   );

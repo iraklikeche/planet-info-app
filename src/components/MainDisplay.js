@@ -6,36 +6,26 @@ import data from "../data.json";
 import Buttons from "./Buttons";
 import geology from "../assets/geology-earth.png";
 
-export default function MainDisplay() {
-  const [planetImage, setPlanetImage] = useState(planet);
+export default function MainDisplay({ currentPlanet }) {
+  const [planetImage, setPlanetImage] = useState(currentPlanet.images.planet);
   const [showGeology, setShowGeology] = useState(false);
-  function handleButtonClick(src) {
+  const [description, setDescription] = useState(
+    currentPlanet.overview.content
+  );
+
+  console.log(planetImage);
+
+  const [source, setSource] = useState(currentPlanet.overview.source);
+  function handleButtonClick(src, content, source) {
     setPlanetImage(src);
     setShowGeology(src === geology);
+    setDescription(content);
+    setSource(source);
   }
 
-  // function getPlanetImage(name) {
-  //   switch (name) {
-  //     case "Mercury":
-  //       return "";
-  //     case "Venus":
-  //       return "";
-  //     case "Earth":
-  //       return planet;
-  //     case "Mars":
-  //       return "";
-  //     case "Jupiter":
-  //       return "";
-  //     case "Saturn":
-  //       return "";
-  //     case "Uranus":
-  //       return "";
-  //     case "Neptune":
-  //       return "";
-  //     default:
-  //       return "";
-  //   }
-  // }
+  if (!currentPlanet) {
+    return null;
+  }
 
   return (
     <Center>
@@ -44,14 +34,16 @@ export default function MainDisplay() {
         {showGeology && <Geology src={geology} />}
       </ImageBox>
       <PlanetDescriptionBox>
-        <NameOfPlanet>{data[2].name}</NameOfPlanet>
-        <PlanetDescription>{data[2].overview.content}</PlanetDescription>
+        <NameOfPlanet>{currentPlanet.name}</NameOfPlanet>
+        <PlanetDescription>{description}</PlanetDescription>
 
         <Source style={{ color: "#fff" }}>
-          Source :{" "}
-          <SourceLink href={data[2].overview.source}>Wikipedia</SourceLink>
+          Source : <SourceLink href={source}>Wikipedia</SourceLink>
         </Source>
-        <Buttons onButtonClick={handleButtonClick} />
+        <Buttons
+          onButtonClick={handleButtonClick}
+          currentPlanet={currentPlanet}
+        />
       </PlanetDescriptionBox>
       <PlanetParameters>
         <PlanetParametersDetails />
@@ -126,3 +118,26 @@ const PlanetImage = styled.img`
 const PlanetParameters = styled.div`
   grid-column: 1/-1;
 `;
+
+// function getPlanetImage(name) {
+//   switch (name) {
+//     case "Mercury":
+//       return "";
+//     case "Venus":
+//       return "";
+//     case "Earth":
+//       return planet;
+//     case "Mars":
+//       return "";
+//     case "Jupiter":
+//       return "";
+//     case "Saturn":
+//       return "";
+//     case "Uranus":
+//       return "";
+//     case "Neptune":
+//       return "";
+//     default:
+//       return "";
+//   }
+// }

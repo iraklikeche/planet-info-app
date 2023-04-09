@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import data from "../data.json";
 
-export default function NavBar() {
+export default function NavBar({ onPlanetClick }) {
   return (
     <Nav>
       <ThePlanets>The planets</ThePlanets>
@@ -10,7 +10,10 @@ export default function NavBar() {
         {data.map((planet, index) => {
           return (
             <li key={index}>
-              <PerPlanet href={`#${planet.name.toLowerCase()}`}>
+              <PerPlanet
+                href={`#${planet.name.toLowerCase()}`}
+                onClick={() => onPlanetClick(planet)}
+              >
                 {planet.name}
               </PerPlanet>
             </li>

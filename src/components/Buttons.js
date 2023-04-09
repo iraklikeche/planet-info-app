@@ -5,24 +5,15 @@ import planet from "../assets/planet-earth.svg";
 import internal from "../assets/planet-earth-internal.svg";
 import geology from "../assets/geology-earth.png";
 
-export default function Buttons(props) {
-  function handleClick(value) {
-    const imgArr = [
-      planet,
-      internal,
-      geology,
-      // data[2].images.planet,
-      // data[2].images.internal,
-      // data[2].images.geology,
-    ];
+export default function Buttons({ onButtonClick, currentPlanet }) {
+  function handleClick(value, content, source) {
+    const imgArr = [planet, internal, geology];
 
-    props.onButtonClick(imgArr[value - 1]);
-    // console.log(value);
-    // console.log(imgArr[value - 1]);
+    onButtonClick(imgArr[value - 1], content, source);
   }
-  const Foo = ({ btn, index }) => (
+  const Foo = ({ btn, index, content, source }) => (
     <ButtonBox>
-      <StyledBtn onClick={() => handleClick(index + 1)}>
+      <StyledBtn onClick={() => handleClick(index + 1, content, source)}>
         <Index>0{index + 1}</Index>
         {btn}
       </StyledBtn>
@@ -33,7 +24,16 @@ export default function Buttons(props) {
     <div>
       {["Overview", "Structure", "Geology"].map((btn, index) => {
         const key = btn.toLowerCase();
-        return <Foo key={index} btn={btn} index={index} value={data[2][key]} />;
+        return (
+          <Foo
+            key={index}
+            btn={btn}
+            index={index}
+            value={currentPlanet[key]}
+            content={currentPlanet[key].content}
+            source={currentPlanet[key].source}
+          />
+        );
       })}
     </div>
   );
