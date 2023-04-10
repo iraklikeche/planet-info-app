@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import planet from "../assets/planet-earth.svg";
 import PlanetParametersDetails from "./PlanetParametersDetails";
 import Buttons from "./Buttons";
 import geology from "../assets/geology-earth.png";
+import data from "../data.json";
+import mercuryImage from "../assets/planet-mercury.svg";
 
 export default function MainDisplay({ currentPlanet }) {
   const [planetImage, setPlanetImage] = useState(currentPlanet.images.planet);
@@ -11,14 +13,20 @@ export default function MainDisplay({ currentPlanet }) {
   const [description, setDescription] = useState(
     currentPlanet.overview.content
   );
-
   const [source, setSource] = useState(currentPlanet.overview.source);
+
+  useEffect(() => {
+    setPlanetImage(currentPlanet.images.planet);
+    setShowGeology(false);
+    setDescription(currentPlanet.overview.content);
+    setSource(currentPlanet.overview.source);
+  }, [currentPlanet]);
+
   function handleButtonClick(src, content, source) {
     setPlanetImage(src);
     setShowGeology(src === geology);
     setDescription(content);
     setSource(source);
-    console.log(src);
   }
 
   if (!currentPlanet) {
@@ -28,15 +36,20 @@ export default function MainDisplay({ currentPlanet }) {
   return (
     <Center>
       <ImageBox>
-        <PlanetImage src={planetImage === geology ? planet : planetImage} />
+        <PlanetImage src={planet === geology ? planet : planetImage} />
+        <PlanetImage src={mercuryImage} />
         {showGeology && <Geology src={geology} />}
+        {/* <img src={planet} alt="123" /> */}
       </ImageBox>
       <PlanetDescriptionBox>
         <NameOfPlanet>{currentPlanet.name}</NameOfPlanet>
         <PlanetDescription>{description}</PlanetDescription>
 
         <Source>
-          Source : <SourceLink href={source}>Wikipedia</SourceLink>
+          Source :{" "}
+          <SourceLink href={source} target="_blank">
+            Wikipedia
+          </SourceLink>
         </Source>
         <Buttons
           onButtonClick={handleButtonClick}
@@ -116,26 +129,3 @@ const PlanetImage = styled.img`
 const PlanetParameters = styled.div`
   grid-column: 1/-1;
 `;
-
-// function getPlanetImage(name) {
-//   switch (name) {
-//     case "Mercury":
-//       return "";
-//     case "Venus":
-//       return "";
-//     case "Earth":
-//       return planet;
-//     case "Mars":
-//       return "";
-//     case "Jupiter":
-//       return "";
-//     case "Saturn":
-//       return "";
-//     case "Uranus":
-//       return "";
-//     case "Neptune":
-//       return "";
-//     default:
-//       return "";
-//   }
-// }

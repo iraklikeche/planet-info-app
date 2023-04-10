@@ -1,4 +1,4 @@
-import styled, { keyframes, ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./components/GlobalStyles";
 import { Helmet } from "react-helmet";
 import NavBar from "./components/NavBar";

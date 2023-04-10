@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import data from "../data.json";
-import planet from "../assets/planet-earth.svg";
-import internal from "../assets/planet-earth-internal.svg";
-import geology from "../assets/geology-earth.png";
 
 export default function Buttons({ onButtonClick, currentPlanet }) {
   function handleClick(value, content, source) {
@@ -13,7 +10,12 @@ export default function Buttons({ onButtonClick, currentPlanet }) {
       currentPlanet.images.geology,
     ];
 
-    console.log(imgArr);
+    // const imgArr = [
+    //   require("../" + currentPlanet.images.planet).default,
+    //   require("../" + currentPlanet.images.internal).default,
+    //   require("../" + currentPlanet.images.geology).default,
+    // ];
+
     onButtonClick(imgArr[value - 1], content, source);
   }
   const Foo = ({ btn, index, content, source }) => (
