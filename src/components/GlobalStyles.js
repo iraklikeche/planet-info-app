@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import stars from "../assets/background-stars.svg";
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -16,7 +15,7 @@ body{
     background-color:${(props) => props.theme.background};
     font-family:"Antonio", "Spartan", sans-serif;
     background-color:${(props) => props.theme.colors.darkBlue};
-     background-image: url(${stars}); 
+     background-image: url(/assets/background-stars.svg);
      background-position: center;
      background-repeat: no-repeat;
     background-size: cover;

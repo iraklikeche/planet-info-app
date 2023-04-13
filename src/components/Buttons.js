@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import data from "../data.json";
 
 export default function Buttons({ onButtonClick, currentPlanet }) {
   function handleClick(value, content, source) {
@@ -10,11 +9,6 @@ export default function Buttons({ onButtonClick, currentPlanet }) {
       currentPlanet.images.geology,
     ];
 
-    // const imgArr = [
-    //   require("../" + currentPlanet.images.planet).default,
-    //   require("../" + currentPlanet.images.internal).default,
-    //   require("../" + currentPlanet.images.geology).default,
-    // ];
 
     onButtonClick(imgArr[value - 1], content, source);
   }
