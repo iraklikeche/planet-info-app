@@ -28,6 +28,9 @@ function App() {
   const handlePlanetClick = (planet) => {
     setCurrentPlanet(planet);
   };
+
+  const [showMainDisplay, setShowMainDisplay] = useState(true);
+
   return (
     <>
       <ThemeProvider theme={defaultTheme}>
@@ -43,9 +46,18 @@ function App() {
             rel="stylesheet"
           />
         </Helmet>
-        <NavBar onPlanetClick={handlePlanetClick} />
+        {/* <NavBar onPlanetClick={handlePlanetClick} /> */}
+        <NavBar
+          onPlanetClick={handlePlanetClick}
+          onMenuClick={() => setShowMainDisplay(!showMainDisplay)}
+        />
 
-        <MainDisplay currentPlanet={currentPlanet} />
+        {showMainDisplay && <MainDisplay currentPlanet={currentPlanet} />}
+
+        {/* <MainDisplay
+          currentPlanet={currentPlanet}
+          onMenuClick={() => setShowMainDisplay(!showMainDisplay)}
+        /> */}
       </ThemeProvider>
     </>
   );

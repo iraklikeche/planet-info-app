@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import data from "../data.json";
 import mediaQuery from "./mediaQuery";
 import hamburger from "../mediaQueryAssets/icon-hamburger.svg";
 import chevron from "../mediaQueryAssets/icon-chevron.svg";
 
-export default function NavBar({ onPlanetClick }) {
+export default function NavBar({ onPlanetClick, onMenuClick }) {
+  const [showNavbar, setShowNavbar] = useState(false);
+
+  function handleClick() {
+    setShowNavbar(!showNavbar);
+    onMenuClick();
+  }
+
   return (
     <div>
       <Nav>
@@ -26,9 +33,11 @@ export default function NavBar({ onPlanetClick }) {
             })}
           </ListOfPlanets>
         </NavigationForDesktop>
-        <HamburgerIcon src={hamburger} alt="menu-icon" />
+        <HamburgerIcon src={hamburger} alt="menu-icon" onClick={handleClick} />
       </Nav>
-      <NavigationForMobile>
+      <NavigationForMobile
+        style={showNavbar ? { display: "block" } : { display: "none" }}
+      >
         <ListOfPlanets>
           {data.map((planet, index) => {
             return (
@@ -37,9 +46,16 @@ export default function NavBar({ onPlanetClick }) {
                   <PlanetImgXName>
                     <PlanetImgMobile src={planet.images.planet} />
 
-                    <PerPlanet
+                    {/* <PerPlanet
                       href={`#${planet.name.toLowerCase()}`}
                       onClick={() => onPlanetClick(planet)}
+                    > */}
+                    <PerPlanet
+                      href={`#${planet.name.toLowerCase()}`}
+                      onClick={() => {
+                        onPlanetClick(planet);
+                        handleClick(); // Close the menu when a planet is clicked
+                      }}
                     >
                       {planet.name}
                     </PerPlanet>

@@ -93,7 +93,12 @@ const Geology = styled.img`
   width: 10%;
   position: absolute;
   top: 50%;
-  ${"" /* transform: translateY(50%); */}
+
+  ${mediaQuery.sm`
+  top: 60%;
+  transform: translateY(60%);
+
+  `}
 `;
 
 const Source = styled.p`
