@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PlanetParametersDetails from "./PlanetParametersDetails";
 import Buttons from "./Buttons";
+import mediaQuery from "./mediaQuery";
 
 export default function MainDisplay({ currentPlanet }) {
   const [planetImage, setPlanetImage] = useState(currentPlanet.images.planet);
@@ -31,6 +32,12 @@ export default function MainDisplay({ currentPlanet }) {
 
   return (
     <Center>
+      <BtnForMobile>
+        <Buttons
+          onButtonClick={handleButtonClick}
+          currentPlanet={currentPlanet}
+        />
+      </BtnForMobile>
       <ImageBox>
         <PlanetImage
           src={
@@ -39,7 +46,6 @@ export default function MainDisplay({ currentPlanet }) {
               : planetImage
           }
         />
-        {/* <PlanetImage src={planetImage} /> */}
         {showGeology && <Geology src={currentPlanet.images.geology} />}
       </ImageBox>
       <PlanetDescriptionBox>
@@ -52,10 +58,12 @@ export default function MainDisplay({ currentPlanet }) {
             Wikipedia
           </SourceLink>
         </Source>
-        <Buttons
-          onButtonClick={handleButtonClick}
-          currentPlanet={currentPlanet}
-        />
+        <BtnForDesktop>
+          <Buttons
+            onButtonClick={handleButtonClick}
+            currentPlanet={currentPlanet}
+          />
+        </BtnForDesktop>
       </PlanetDescriptionBox>
       <PlanetParameters>
         <PlanetParametersDetails currentPlanet={currentPlanet} />
@@ -63,6 +71,24 @@ export default function MainDisplay({ currentPlanet }) {
     </Center>
   );
 }
+
+const BtnForMobile = styled.div`
+  display: none;
+
+  ${mediaQuery.sm`
+
+  display:block;
+
+  `}
+`;
+
+const BtnForDesktop = styled.div`
+  display: block;
+
+  ${mediaQuery.sm`
+    display:none;
+  `}
+`;
 
 const Geology = styled.img`
   width: 20%;
@@ -92,6 +118,15 @@ const PlanetDescriptionBox = styled.div`
   gap: 2.4rem;
   align-items: flex-start;
   justify-content: flex-start;
+
+  ${mediaQuery.sm`
+  width:100%;
+  margin:0 auto;
+  align-items: center;
+  text-align:center;
+  padding:0 5rem;
+
+  `}
 `;
 
 const PlanetDescription = styled.p`
@@ -100,7 +135,10 @@ const PlanetDescription = styled.p`
   opacity: 0.7;
   line-height: 1.5;
   height: 100px;
-  ${"" /* overflow: hidden; */}
+
+  ${mediaQuery.sm`
+    height:150px;
+  `}
 `;
 
 const NameOfPlanet = styled.h2`
@@ -114,7 +152,10 @@ const ImageBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+
+  ${mediaQuery.sm`
+  margin:7.2rem 0;
+  `}
 `;
 
 const Center = styled.div`
@@ -123,12 +164,26 @@ const Center = styled.div`
   grid-template-columns: 1fr 1fr;
   justify-item: flex-end;
   row-gap: 5rem;
+
+  ${mediaQuery.sm`
+    grid-template-columns: 1fr;
+    justify-item: center;
+    margin:0;
+  `}
 `;
 
 const PlanetImage = styled.img`
   width: 60%;
+
+  ${mediaQuery.sm`
+  width: 30%;
+  `}
 `;
 
 const PlanetParameters = styled.div`
   grid-column: 1/-1;
+  ${mediaQuery.sm`
+    grid-column: 1;
+    padding:0 5rem;
+  `}
 `;

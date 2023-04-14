@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import data from "../data.json";
+import mediaQuery from "./mediaQuery";
+import hamburger from "../mediaQueryAssets/icon-hamburger.svg";
 
 export default function NavBar({ onPlanetClick }) {
   return (
     <Nav>
       <ThePlanets>The planets</ThePlanets>
+
       <ListOfPlanets>
         {data.map((planet, index) => {
           return (
@@ -20,6 +23,7 @@ export default function NavBar({ onPlanetClick }) {
           );
         })}
       </ListOfPlanets>
+      <img src={hamburger} alt="menu-icon" />
     </Nav>
   );
 }
@@ -31,12 +35,20 @@ const PerPlanet = styled.a`
   font-weight: 700;
   text-decoration: none;
   opacity: 0.5;
+
+  ${mediaQuery.sm`
+
+  `}
 `;
 
 const ListOfPlanets = styled.ul`
   display: flex;
   gap: 5rem;
   list-style: none;
+
+  ${mediaQuery.sm`
+    display:none;
+  `}
 `;
 
 const ThePlanets = styled.h4`
@@ -53,4 +65,5 @@ const Nav = styled.nav`
   align-items: center;
   padding: 2rem 5rem;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+  position: relative;
 `;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import mediaQuery from "./mediaQuery";
 
 export default function Buttons({ onButtonClick, currentPlanet }) {
   function handleClick(value, content, source) {
@@ -9,7 +10,6 @@ export default function Buttons({ onButtonClick, currentPlanet }) {
       currentPlanet.images.geology,
     ];
 
-
     onButtonClick(imgArr[value - 1], content, source);
   }
   const Foo = ({ btn, index, content, source }) => (
@@ -18,11 +18,10 @@ export default function Buttons({ onButtonClick, currentPlanet }) {
         <Index>0{index + 1}</Index>
         {btn}
       </StyledBtn>
-      ;
     </ButtonBox>
   );
   return (
-    <div>
+    <StyledMappedBtnBox>
       {["Overview", "Structure", "Geology"].map((btn, index) => {
         const key = btn.toLowerCase();
         return (
@@ -36,15 +35,27 @@ export default function Buttons({ onButtonClick, currentPlanet }) {
           />
         );
       })}
-    </div>
+    </StyledMappedBtnBox>
   );
 }
+
+const StyledMappedBtnBox = styled.div`
+  ${mediaQuery.sm`
+  display:flex;
+  justify-content:space-around;
+  border-bottom:1px solid rgba(255, 255, 255, 0.2);
+`}
+`;
 
 const Index = styled.span`
   color: #fff;
   opacity: 0.5;
   font-weight: 700;
   font-family: Spartan;
+
+  ${mediaQuery.sm`
+  display:none;
+  `}
 `;
 
 const ButtonBox = styled.div`
@@ -65,6 +76,7 @@ const StyledBtn = styled.button`
   border: 1px solid rgba(255, 255, 255, 0.2);
   text-transform: uppercase;
   letter-spacing: 1.2px;
+  width: 100%;
 
   &: hover {
     background-color: ${(props) => props.theme.colors.darkGrey};
@@ -73,4 +85,9 @@ const StyledBtn = styled.button`
   &:active {
     background-color: ${(props) => props.theme.colors.marine};
   }
+
+  ${mediaQuery.sm`
+  padding: 2rem;
+  border:none;  
+  `}
 `;

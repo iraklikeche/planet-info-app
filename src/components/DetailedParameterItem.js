@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import mediaQuery from "./mediaQuery";
 
 export default function DetailedParameterItem({ title, value }) {
   return (
@@ -23,11 +24,22 @@ const DetailParamBox = styled.div`
   height: 90px;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
+
+  ${mediaQuery.sm`
+  width:100%;
+  height:100%;
+  `}
 `;
 
 const DetailedParameter = styled.div`
   display: flex;
   flex-direction: column;
+
+  ${mediaQuery.sm`
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+  `}
 `;
 
 const DetailedParametersTitle = styled.span`
@@ -39,9 +51,20 @@ const DetailedParametersTitle = styled.span`
   margin-bottom: 1rem;
   font-family: "Spartan";
   font-weight: 600;
+
+  ${mediaQuery.sm`
+    font-size:9px;
+    margin-bottom: 0;
+  `}
 `;
 
 const DetailedParametersFigures = styled.span`
   font-size: 2.8rem;
   color: #fff;
+
+  ${mediaQuery.sm`
+  
+    font-size:2rem;
+
+  `}
 `;
