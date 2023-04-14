@@ -84,17 +84,16 @@ const BtnForMobile = styled.div`
 
 const BtnForDesktop = styled.div`
   display: block;
-
   ${mediaQuery.sm`
     display:none;
   `}
 `;
 
 const Geology = styled.img`
-  width: 20%;
+  width: 10%;
   position: absolute;
   top: 50%;
-  transform: translateY(50%);
+  ${"" /* transform: translateY(50%); */}
 `;
 
 const Source = styled.p`
@@ -169,11 +168,14 @@ const Center = styled.div`
     grid-template-columns: 1fr;
     justify-item: center;
     margin:0;
+
+    ${"" /* display:none; */}
   `}
 `;
 
 const PlanetImage = styled.img`
   width: 60%;
+  position: relative;
 
   ${mediaQuery.sm`
   width: 30%;

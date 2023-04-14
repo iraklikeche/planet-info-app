@@ -40,6 +40,10 @@ export default function Buttons({ onButtonClick, currentPlanet }) {
 }
 
 const StyledMappedBtnBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
   ${mediaQuery.sm`
   display:flex;
   justify-content:space-around;
