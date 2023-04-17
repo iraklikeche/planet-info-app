@@ -41,22 +41,17 @@ export default function NavBar({ onPlanetClick, onMenuClick }) {
         <ListOfPlanets>
           {data.map((planet, index) => {
             return (
-              <PlanetsLi key={index}>
+              <PlanetsLi
+                key={index}
+                onClick={() => {
+                  onPlanetClick(planet);
+                  handleClick();
+                }}
+              >
                 <PlanetXNameXIcon>
                   <PlanetImgXName>
                     <PlanetImgMobile src={planet.images.planet} />
-
-                    {/* <PerPlanet
-                      href={`#${planet.name.toLowerCase()}`}
-                      onClick={() => onPlanetClick(planet)}
-                    > */}
-                    <PerPlanet
-                      href={`#${planet.name.toLowerCase()}`}
-                      onClick={() => {
-                        onPlanetClick(planet);
-                        handleClick(); // Close the menu when a planet is clicked
-                      }}
-                    >
+                    <PerPlanet href={`#${planet.name.toLowerCase()}`}>
                       {planet.name}
                     </PerPlanet>
                   </PlanetImgXName>
@@ -100,9 +95,7 @@ const HamburgerIcon = styled.img`
   display: none;
 
   ${mediaQuery.sm`
-
     display:block;
-
   `}
 `;
 
@@ -154,6 +147,12 @@ const ListOfPlanets = styled.ul`
   flex-direction:column;
   gap:0;
   `}
+
+  ${mediaQuery.md`
+  
+  gap:4.4rem;
+
+  `}
 `;
 
 const ThePlanets = styled.h4`
@@ -173,8 +172,13 @@ const Nav = styled.nav`
   position: relative;
 
   ${mediaQuery.sm`
-  
   padding: 2rem 3.2rem
+  `}
 
+  ${mediaQuery.md`
+
+    flex-direction:column;
+    gap:3.2rem;
+  
   `}
 `;

@@ -29,6 +29,13 @@ const DetailParamBox = styled.div`
   width:100%;
   height:100%;
   `}
+
+  ${mediaQuery.md`
+  
+  width: 160px;
+  height: 80px;
+  margin-bottom:5rem;
+  `}
 `;
 
 const DetailedParameter = styled.div`
@@ -63,8 +70,12 @@ const DetailedParametersFigures = styled.span`
   color: #fff;
 
   ${mediaQuery.sm`
-  
     font-size:2rem;
+  `}
+
+  ${mediaQuery.md`
+  
+  font-size:1.8rem;
 
   `}
 `;

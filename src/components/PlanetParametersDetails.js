@@ -42,4 +42,9 @@ const PlanetParameterDetailsBox = styled.div`
     margin-bottom: 5rem; 
   }
   `}
+
+  ${mediaQuery.md`
+  
+  gap:1rem;
+  `}
 `;
