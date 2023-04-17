@@ -74,7 +74,7 @@ const StyledBtn = styled.button`
   padding: 1.5rem;
   padding-right: 15rem;
   color: #fff;
-  font-size: 9px;
+  font-size: 1.4rem;
   font-weight: 700;
   background-color: transparent;
   cursor: pointer;
@@ -94,5 +94,17 @@ const StyledBtn = styled.button`
   ${mediaQuery.sm`
   padding: 2rem;
   border:none;  
+  `}
+
+  ${mediaQuery.md`
+  
+  padding-right:10rem;
+  
+  `}
+
+  ${mediaQuery.lg`
+  
+  font-size:8px;
+
   `}
 `;

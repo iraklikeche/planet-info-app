@@ -18,7 +18,7 @@ const media = {
     `@media (min-width: ${breakpoints.sm}) and (max-width: ${breakpoints.md}) { ${styles} }`,
   lg: (styles) =>
     `@media (min-width: ${breakpoints.md}) and (max-width: ${breakpoints.lg}) { ${styles} }`,
-  xl: (styles) => `@media (min-width: ${breakpoints.xl}) { ${styles} }`,
+  xl: (styles) => `@media (min-width: ${breakpoints.lg})  { ${styles} }`,
 };
 
 export default media;

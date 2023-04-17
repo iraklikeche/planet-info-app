@@ -69,7 +69,6 @@ export default function NavBar({ onPlanetClick, onMenuClick }) {
 const PlanetXNameXIcon = styled.div`
   display: flex;
   justify-center;
-
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 1.5rem;
 
@@ -124,7 +123,7 @@ const PlanetImgMobile = styled.img`
 
 const PerPlanet = styled.a`
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-family: "Spartan";
   font-weight: 700;
   text-decoration: none;
@@ -149,9 +148,13 @@ const ListOfPlanets = styled.ul`
   `}
 
   ${mediaQuery.md`
-  
-  gap:4.4rem;
+  gap:3.2rem;
+  `}
 
+  ${mediaQuery.lg`
+  
+  gap:2rem;
+  
   `}
 `;
 

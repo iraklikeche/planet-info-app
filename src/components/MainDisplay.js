@@ -122,13 +122,13 @@ const Source = styled.p`
 `;
 
 const SourceLink = styled.a`
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #fff;
   font-weight: 700;
 `;
 
 const PlanetDescription = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #fff;
   opacity: 0.7;
   line-height: 1.5;
@@ -143,6 +143,20 @@ const PlanetDescription = styled.p`
   grid-row:2/3;
   width:300px
   `}
+
+  ${mediaQuery.lg`
+  
+  height:150px
+  `}
+
+  ${mediaQuery.xl`
+  font-size:1.2rem;
+  height:150px
+  `}
+
+  @media (max-width: 630px) {
+    width: 240px;
+  }
 `;
 
 const NameOfPlanet = styled.h2`
@@ -154,6 +168,12 @@ const NameOfPlanet = styled.h2`
   ${mediaQuery.md`
   align-self:end;
   font-size: 4.2rem;
+  `}
+
+  ${mediaQuery.lg`
+  
+  font-size:4.2rem;
+
   `}
 `;
 
@@ -189,10 +209,22 @@ const Center = styled.div`
   grid-template-columns: 1fr;
   margin:4rem 5.2rem 0;
   `}
+
+  ${mediaQuery.lg`
+  
+  margin:4rem 4rem 0;
+  
+  `}
+
+  ${mediaQuery.xl`
+  
+  margin:4rem 4.8rem 0;
+  
+  `}
 `;
 
 const PlanetImage = styled.img`
-  width: 60%;
+  width: 50%;
   position: relative;
 
   ${mediaQuery.sm`
@@ -209,6 +241,12 @@ const PlanetParameters = styled.div`
   ${mediaQuery.sm`
     grid-column: 1;
     padding:0 5rem;
+  `}
+
+  ${mediaQuery.lg`
+  
+  margin-bottom:5rem;
+
   `}
 `;
 

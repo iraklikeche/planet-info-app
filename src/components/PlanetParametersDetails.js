@@ -32,6 +32,7 @@ const PlanetParameterDetailsBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 5rem;
+  margin-top: 5rem;
 
   ${mediaQuery.sm`
     flex-direction:column;

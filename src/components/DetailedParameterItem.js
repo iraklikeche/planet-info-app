@@ -20,8 +20,8 @@ export default function DetailedParameterItem({ title, value }) {
 const DetailParamBox = styled.div`
   display: inline-block;
   padding: 1.5rem;
-  width: 210px;
-  height: 90px;
+  width: 250px;
+  height: 110px;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.2);
 
@@ -32,9 +32,14 @@ const DetailParamBox = styled.div`
 
   ${mediaQuery.md`
   
-  width: 160px;
+  width: 140px;
   height: 80px;
   margin-bottom:5rem;
+  `}
+
+  ${mediaQuery.lg`
+  width:165px;
+  height: 90px;
   `}
 `;
 
@@ -74,8 +79,10 @@ const DetailedParametersFigures = styled.span`
   `}
 
   ${mediaQuery.md`
-  
   font-size:1.8rem;
+  `}
 
+  ${mediaQuery.lg`
+  font-size:2.2rem;
   `}
 `;
